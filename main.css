@@ -1,0 +1,6 @@
+.we {
+    color: red;
+}
+input[type=checkbox]:checked ~ .we {
+    color: gray;
+}
