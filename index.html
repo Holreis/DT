@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<title>web хуйня ебаная</title>
+	<meta charset="UTF-8">
+	<title>Webdesing</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
-	<form action="main.php" method="POST">
-		<div>
-			<p>web хуйня ебаная?</p>
-			<label><input name="q1" type="radio" value="1">да</label>
-			<label><input name="q2" type="radio" value="2">нет</label>
+	<header>
+		<div class="header-container">
+			<div class="logo">
+				<img src="img/LOGO.png" alt="logo">
+			</div>
+			<input type="checkbox" id="menu-checkbox">
+			<nav role="navigation">
+				<label for="menu-checkbox" class="toggle-button"
+				data-open="MENU" data-close="CLOSE" onclick"></label>
+				<ul class="main-menu">
+					<li><a href="#">HOME</a></li>
+					<li><a href="#">PORTFOLIO</a></li>
+					<li><a href="#">BLOG</a></li>
+					<li><a href="#">ABOUT</a></li>
+					<li><a href="#">CONTACT</a></li>
+				</ul>
+			</nav>
 		</div>
-		<button type="submit">Результат</button>
-	</form>
+	</header>
+	<main>
+		<section class="top-slide">
+			
+		</section>
+	</main>
 
+
+
+
+
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script src="script.js"> </script>
 </body>
 </html>
