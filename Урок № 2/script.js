@@ -23,8 +23,8 @@ for (let i = 0; i < 2; i++) {
     }
 };
 ///////////////////////////////Второй способ///////////////////////////////
-/*var i = 0;
-var a = 0;
+/*let i = 0;
+let a = 0;
 while (i < 2 ) { 
     let a = prompt("Введите обязательную статью расходов в этом месяце", "");
     let b = prompt("Во сколько обойдется?", "");
@@ -47,8 +47,8 @@ while (i < 2 ) {
     }
 }*/
 ///////////////////////////////Третий способ///////////////////////////////
-/*var i = 0;
-var a = 0;
+/*let i = 0;
+let a = 0;
 switch (i) {
     case i <= 2:
         let a = prompt("Введите обязательную статью расходов в этом месяце", "");
@@ -70,14 +70,10 @@ alert("Ежедневный бюджет: " + appData.moneyPerDay);
 
 if (appData.moneyPerDay < 100) {
     console.log("Минимальный уровень достатка");
-    console.log(appData);
 } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
     console.log("Средний уровень достатка");
-    console.log(appData);
 } else if (appData.moneyPerDay > 2000) {
     console.log("Высокий уровень достатка");
-    console.log(appData);
 } else {
     console.log("Произошла ошибка");
-    console.log(appData);
 }
