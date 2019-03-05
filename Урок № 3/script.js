@@ -29,7 +29,7 @@ let appData = {
     optionalExpenses: {},
     income: [],
     timeData: time,
-    savings: false
+    savings: true
 };
 
 ///////////////////////////////Второй способ///////////////////////////////
@@ -90,8 +90,20 @@ function chooseOptExpenses() {
         }
     }
 }
+
+function checkSavings(){
+    if (appData.savings ==  true){
+        let save = +prompt("Каова сумма накоплений?"),
+            percent = +prompt("Под какой процент?");
+
+        appData.monthIncome = save/100/12*percent;
+        alert("Доход в месяц с вашнго депозита: " + appData.monthIncome);
+    }
+}
+
 chooseExpenses();
 chooseOptExpenses();
 detectDayBudget();
 detectLevel();
+checkSavings();
 console.log(appData);
