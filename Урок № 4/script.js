@@ -77,9 +77,9 @@ let appData = {
                 i = 0;
             }
         }
-        appData.income.forEach(function (item, i, mass) {
-            
-            console.log(appData.income);
+        appData.income.forEach(function (item, i, mees) {
+            i++;
+            alert(appData.income);
         });
         for(let key in appData){
             console.log("obj." + key + " = " + appData[key]);
