@@ -70,15 +70,19 @@ let appData = {
                 if ((typeof (dop)) === 'string' && (typeof (dop)) != null && dop != '' && dop.length < 50) {
                     appData.income.push(dop);
                     appData.income.sort();
-                }else{
+                } else {
                     i = 0;
                 }
             } else {
-               i = 0;
+                i = 0;
             }
         }
-        appData.income.forEach(function(item, i, mass){
+        appData.income.forEach(function (item, i, mass) {
+            
             console.log(appData.income);
-        })
+        });
+        for(let key in appData){
+            console.log("obj." + key + " = " + appData[key]);
+        }
     }
 };
