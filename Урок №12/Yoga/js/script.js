@@ -118,7 +118,48 @@ window.addEventListener('DOMContentLoaded', () => {
   };
   let mainForm = document.querySelector('.main-form'),
       contactForm = document.querySelector('#form'),
+      input = mainForm.getElementsByTagName('input'),
+      inputs = contactForm.getElementsByTagName('input'),
       statusMessage = document.createElement('div');
+  
+  function getChar(event) {
+    if (event.which == null) {
+      if (event.keyCode < 32) return null;
+      return String.fromCharCode(event.keyCode) 
+    }
+
+    if (event.which != 0 && event.charCode != 0) {
+      if (event.which < 32) return null;
+      return String.fromCharCode(event.which) 
+    }
+
+    return null;
+  }
+  inputs[1].onkeypress = function(e) {
+    e = e || event;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    var chr = getChar(e);
+    if (chr == null) return;
+    if (chr == '+') {
+      return true;
+    }
+    if (chr < '0' || chr > '9') {
+      return false;
+    }
+  }
+  input[0].onkeypress = function(e) {
+      e = e || event;  
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      var chr = getChar(e);
+      if (chr == null) return;
+      if (chr == '+') {
+        return true;
+      }
+      if (chr < '0' || chr > '9') {
+        return false;
+      }
+    }
+
 
   function sendForm(elem) {
     elem.addEventListener('submit', function (e) {
@@ -133,10 +174,13 @@ window.addEventListener('DOMContentLoaded', () => {
           request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
           request.onreadystatechange = function () {
             if (request.readyState < 4) {
+              statusMessage.innerHTML = message.loading;
               resolve();
             } else if (request.readyState == 4 && request.status == 200) {
+              statusMessage.innerHTML = message.success;
               resolve();
             } else {
+              statusMessage.innerHTML = message.failure;
               reject();
             }
           };
@@ -147,7 +191,7 @@ window.addEventListener('DOMContentLoaded', () => {
           let json = JSON.stringify(obj);
           request.send(json);
         });
-      } //postForm
+      }
       function clearInput() {
         for (let i = 0; i < document.querySelectorAll('input').length; i++) {
           document.querySelectorAll('input')[i].value = '';
@@ -169,136 +213,7 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .then(clearInput);
     });
-  } //sendForm
+  } 
   sendForm(mainForm);
   sendForm(contactForm);
-  // let form = document.querySelector('.main-form'),
-  //   input = form.getElementsByTagName('input'),
-  //   statusMessage = document.createElement('div');
-
-  // statusMessage.classList.add('status');
-
-  // input[0].onkeypress = function(e) {
-
-  //   e = e || event;  
-
-  //   if (e.ctrlKey || e.altKey || e.metaKey) return;
-
-  //   var chr = getChar(e);
-  //   if (chr == null) return;
-
-  //   if (chr == '+') {
-  //     return true;
-  //   }
-
-  //   if (chr < '0' || chr > '9') {
-  //     return false;
-  //   }
-
-  // }
-
-  // function getChar(event) {
-  //   if (event.which == null) {
-  //     if (event.keyCode < 32) return null;
-  //     return String.fromCharCode(event.keyCode) 
-  //   }
-
-  //   if (event.which != 0 && event.charCode != 0) {
-  //     if (event.which < 32) return null;
-  //     return String.fromCharCode(event.which) 
-  //   }
-
-  //   return null;
-  // }
-
-  // form.addEventListener('submit', function (event) {
-  //   event.preventDefault();
-  //   form.appendChild(statusMessage);
-
-  //   let request = new XMLHttpRequest();
-  //   request.open('POST', 'server.php');
-  //   request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-  //   let formData = new FormData(form);
-
-  //   let obj = {};
-
-  //   formData.forEach(function (value, key) {
-  //     obj[key] = value;
-  //   });
-  //   let json = JSON.stringify(obj);
-
-  //   request.send(json);
-
-  //   request.addEventListener('readystatechange', function () {
-  //     if (request.readyState < 4) {
-  //       statusMessage.innerHTML = message.loading;
-  //     } else if (request.readyState === 4 && request.status == 200) {
-  //       statusMessage.innerHTML = message.success;
-  //     } else {
-  //       statusMessage.innerHTML = message.failure;
-  //     }
-  //   });
-  //   for (let i = 0; i < input.length; i++) {
-  //     input[i].value = '';
-  //   }
-  // });
-
-
-
-  // let forms = document.querySelector('#form'),
-  //     inputs = forms.getElementsByTagName('input');
-
-  // inputs[1].onkeypress = function(e) {
-
-  //   e = e || event;
-
-  //   if (e.ctrlKey || e.altKey || e.metaKey) return;
-
-  //   var chr = getChar(e);
-  //   if (chr == null) return;
-
-  //   if (chr == '+') {
-  //     return true;
-  //   }
-
-  //   if (chr < '0' || chr > '9') {
-  //     return false;
-  //   }
-
-  // }
-
-  // forms.addEventListener('submit', function (event) {
-  //     event.preventDefault();
-  //     forms.appendChild(statusMessage);
-
-  //     let request = new XMLHttpRequest();
-  //     request.open('POST', 'server.php');
-  //     request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-  //     let formData = new FormData(forms);
-
-  //     let obj = {};
-
-  //     formData.forEach(function (value, key) {
-  //       obj[key] = value;
-  //     });
-  //     let json = JSON.stringify(obj);
-
-  //     request.send(json);
-
-  //     request.addEventListener('readystatechange', function () {
-  //       if (request.readyState < 4) {
-  //         statusMessage.innerHTML = message.loading;
-  //       } else if (request.readyState === 4 && request.status == 200) {
-  //         statusMessage.innerHTML = message.success;
-  //       } else {
-  //         statusMessage.innerHTML = message.failure;
-  //       }
-  //     });
-  //     for (let i = 0; i < inputs.length; i++) {
-  //       inputs[i].value = '';
-  //     }
-  //   });
-
 });
